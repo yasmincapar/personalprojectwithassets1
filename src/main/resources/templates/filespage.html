@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <style>
+div.a {
+	text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="a">
+
+<h1>File Upload Page</h1>
+<hr/>
+
+<h2>Upload A Single File:</h2>
+<form method="POST" enctype="multipart/form-data" th:action="@{/upload-file}">
+    <!--POST as -->
+    <input type="file" name="file"> <br/><br/>
+    <button type="submit">Submit</button>
+</form>
+
+<hr/>
+
+    <h2>All Uploaded Files:</h2>
+    <ul>
+        <li th:each="file : ${files}">
+            <a th:href="${file}" target="_blank" th:text="${file}"></a>
+        </li>
+    </ul>
+    <p><a href="/adminpage" class="btn btn-warning">Back</a> </p>
+
+</div>
+
+</body>
+</html>

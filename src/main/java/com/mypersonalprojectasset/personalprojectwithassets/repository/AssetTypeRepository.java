@@ -1,0 +1,9 @@
+package com.mypersonalprojectasset.personalprojectwithassets.repository;
+
+import com.mypersonalprojectasset.personalprojectwithassets.model.AssetType;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+
+public interface AssetTypeRepository extends JpaRepository<AssetType,Integer> {
+
+}
