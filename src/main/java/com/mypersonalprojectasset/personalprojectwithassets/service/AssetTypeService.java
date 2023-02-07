@@ -5,6 +5,9 @@ import com.mypersonalprojectasset.personalprojectwithassets.repository.AssetType
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
+import java.util.List;
+
 @Service
 public class AssetTypeService {
     private final AssetTypeRepository repository;
@@ -12,7 +15,18 @@ public class AssetTypeService {
     public AssetTypeService(AssetTypeRepository repository) {
         this.repository = repository;
     }
-    public AssetType saveAssetType(AssetType assetype) {
-        return repository.save(assetype);
+
+
+    public void save(AssetType assetType) {
+     assetType= repository.save(assetType);
+    if(assetType.getId()>0){
+    System.out.println("asset type has been created "+ assetType.getId());
+}
+else{
+    System.out.println("asset has not been created");
+}
+    }
+    public List<AssetType> findAll() {
+    return repository.findAll();
     }
 }

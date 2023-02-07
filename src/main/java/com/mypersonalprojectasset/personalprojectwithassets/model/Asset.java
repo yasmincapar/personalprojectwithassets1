@@ -13,7 +13,6 @@ import javax.persistence.OneToOne;
 @AllArgsConstructor
 public class Asset {
     private int id;
-
     private String title;
     private String line_number;
     private String link;

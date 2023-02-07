@@ -29,24 +29,23 @@ public class AssetTypeController {
 //      return "addassettype";}
 
     @GetMapping("/assettypepage")
-    public String showSignupPage(User user, HttpSession session) {
-        User userInSession = (User) session.getAttribute("user");
-        if (userInSession.getRole().equals(Role.ADMIN)) {
+    public String showSignupPage(AssetType assetType, HttpSession session) {
             return "addassettype";
-        } else if (userInSession.getRole().equals(Role.USER)) {
-            return "unauthorized";
-        } else {
-            return "redirect:/login";
-        }
-
     }
-    @PostMapping("/addasset")
+    @PostMapping("/addassettype")
     public String addUser(@Valid AssetType assetType, BindingResult result, Model theModel) {
         if (result.hasErrors()) {
-            return "adduser";
+            return "addassettype";
         }
 
-        service.saveAssetType(assetType);//when add user us pressed user should be saved
-        return "redirect:/adminpage";
+        service.save(assetType);//when add user us pressed user should be saved
+        return "redirect:/assettypecreated";
     }
+
+    @GetMapping("viewassettype")
+    public String ViewAsset(Model theModel, HttpSession session){
+            User user = (User) session.getAttribute("asset");
+            theModel.addAttribute("allassets", service.findAll());
+            return "assettypecreated";
+        }
     }

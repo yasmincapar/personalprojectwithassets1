@@ -13,7 +13,7 @@
   <h2>New Asset Type</h2>
   <div class="row">
     <div class="col-md-6">
-      <form action="#" th:action="@{/addasset}" th:object="${assettype}" method="post">
+      <form action="#" th:action="@{/addassettype}" th:object="${assetType}" method="post">
         <div class="row">
           <div class="form-group col-md-6">
             <label for="assetType" class="col-form-label">Asset Type</label>
@@ -24,6 +24,8 @@
         <div class="row">
           <div class="col-md-6 mt-5">
             <input type="submit" class="btn btn-primary" value="Add Asset Type">
+            <p><a href="/adminpage" class="btn btn-warning">Back</a> </p>
+
           </div>
         </div>
       </form>
