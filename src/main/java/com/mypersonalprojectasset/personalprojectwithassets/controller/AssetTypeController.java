@@ -1,6 +1,7 @@
 package com.mypersonalprojectasset.personalprojectwithassets.controller;
 
 import com.mypersonalprojectasset.personalprojectwithassets.model.AssetType;
+import com.mypersonalprojectasset.personalprojectwithassets.model.AssetTypeRequest;
 import com.mypersonalprojectasset.personalprojectwithassets.model.Role;
 import com.mypersonalprojectasset.personalprojectwithassets.model.User;
 import com.mypersonalprojectasset.personalprojectwithassets.service.AssetTypeService;
@@ -32,19 +33,30 @@ public class AssetTypeController {
     public String showSignupPage(AssetType assetType, HttpSession session) {
             return "addassettype";
     }
-    @PostMapping("/addassettype")
-    public String addUser(@Valid AssetType assetType, BindingResult result, Model theModel) {
-        if (result.hasErrors()) {
-            return "addassettype";
-        }
+  //  @PostMapping("/addassettype")
+    //public String addUser(@Valid AssetType assetType, BindingResult result, Model theModel) {
+      //  if (result.hasErrors()) {
+        //    return "addassettype";
+        //}
 
-        service.save(assetType);//when add user us pressed user should be saved
-        return "redirect:/assettypecreated";
+        //service.save(assetType);//when add user us pressed user should be saved
+        //return "redirect:/assettypecreated";
+    //}
+
+    @PostMapping("/addassettype")
+    public String addtheassettype(@Valid AssetTypeRequest assetType, BindingResult result, Model theModel){
+        if(result.hasErrors()){
+            return "addassettype";
+
+        }
+        service.save(AssetType.builder().assetType(assetType.getAssetType()).build());
+            return "redirect:/assettypecreated";
+
     }
 
     @GetMapping("viewassettype")
     public String ViewAsset(Model theModel, HttpSession session){
-            User user = (User) session.getAttribute("asset");
+            AssetType assetTypes = (AssetType) session.getAttribute("assettype");
             theModel.addAttribute("allassets", service.findAll());
             return "assettypecreated";
         }
