@@ -25,23 +25,12 @@ public class AssetTypeController {
         this.service = service;
     }
 
- //  @GetMapping("/assettypepage")//this is once it reaches teh index page if it is an admin will authorize if not will not authorize
-//   public String fromadmintoassettypepage(Model theModel, HttpSession session, AssetType assetType) {
-//      return "addassettype";}
 
     @GetMapping("/assettypepage")
     public String showSignupPage(AssetType assetType, HttpSession session) {
             return "addassettype";
     }
-  //  @PostMapping("/addassettype")
-    //public String addUser(@Valid AssetType assetType, BindingResult result, Model theModel) {
-      //  if (result.hasErrors()) {
-        //    return "addassettype";
-        //}
 
-        //service.save(assetType);//when add user us pressed user should be saved
-        //return "redirect:/assettypecreated";
-    //}
 
     @PostMapping("/addassettype")
     public String addtheassettype(@Valid AssetTypeRequest assetType, BindingResult result, Model theModel){
@@ -53,11 +42,11 @@ public class AssetTypeController {
             return "redirect:/assettypecreated";
 
     }
-
     @GetMapping("viewassettype")
     public String ViewAsset(Model theModel, HttpSession session){
             AssetType assetTypes = (AssetType) session.getAttribute("assettype");
             theModel.addAttribute("allassets", service.findAll());
             return "assettypecreated";
         }
+
     }

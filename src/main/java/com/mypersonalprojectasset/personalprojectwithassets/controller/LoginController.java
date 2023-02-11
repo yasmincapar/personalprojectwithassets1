@@ -3,6 +3,7 @@ package com.mypersonalprojectasset.personalprojectwithassets.controller;
 import com.mypersonalprojectasset.personalprojectwithassets.model.Role;
 import com.mypersonalprojectasset.personalprojectwithassets.model.User;
 import com.mypersonalprojectasset.personalprojectwithassets.repository.UserRepository;
+import com.mypersonalprojectasset.personalprojectwithassets.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +15,13 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
+    private final LoginService service;
+  //  @Autowired//no need to create getters and setters
+    //UserRepository repository;
 
-    @Autowired//no need to create getters and setters
-    UserRepository repository;
+    public LoginController(LoginService service) {
+        this.service = service;
+    }
 
     //GET is used to request data from a specified resource
     @GetMapping("/")
@@ -36,12 +41,14 @@ public class LoginController {
 //POST is used to send data to a server to create/update a resource.
     @PostMapping("/login")
     public String login(@ModelAttribute User user, Model model, HttpSession session) {
-        User foundUser = repository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+        User foundUser = service.findByUsernameAndPassword(user.getUsername(), user.getPassword());
         //user.getPassword() comes form webpage
         //getting the query and cheking if the user actually exists
         if (foundUser != null) {
             session.setAttribute("user", foundUser);
             model.addAttribute("user", foundUser);
+            User user1 = (User) session.getAttribute("user");
+            model.addAttribute("allusers", service.findAll());
             if (foundUser.getRole().equals(Role.ADMIN)) {
                 //if the founduser role is admin
                 return "adminpage";//redirect you to this page

@@ -23,11 +23,12 @@
         </div>
         <div class="row">
           <div class="col-md-6 mt-5">
+            <form action="#" th:action="@{/assettypepage}" th:object="${assetType}" method="post">
+              <input type="submit" class="btn btn-primary" value="Add Asset Type">
+            </form>
             <p><a href="/viewassettype" class="btn btn-warning">Go see assettypes</a> </p>
-
-            <input type="submit" class="btn btn-primary" value="Add Asset Type">
+            <p><a href="/addassettype" class="btn btn-warning">addasettype</a> </p>
             <p><a href="/adminpage" class="btn btn-warning">Back</a> </p>
-
           </div>
         </div>
       </form>

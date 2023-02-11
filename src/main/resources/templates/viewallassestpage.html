@@ -3,47 +3,47 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Users</title>
+    <title>Add User</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
-          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
 <body>
+<div class="container my-5">
+    <h2>Add Asset</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="#" th:action="@{/adduser}" th:object="${user}" method="post">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="username" class="col-form-label">Asset Link</label>
+                        <input type="text" th:field="*{username}" class="form-control" id="username" placeholder="username">
+                        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="password" class="col-form-label">Asset Name</label>
+                        <input type="password" th:field="*{password}" class="form-control" id="password" placeholder="password">
+                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="role" class="col-form-label">AsseType</label>
+                        <select th:field="*{role}">
+                            <option th:value="'ADMIN'" th:text="ADMIN"></option>
+                            <option th:value="'USER'" th:text="USER"></option>
+                            <option th:value="'VIEWER'" th:text="VIEWER"></option>
 
-<div class="container">
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <input type="submit" class="btn btn-primary" value="Add Asset">
 
-    <h1 class="my-5">Admin page</h1>
-    <h2 class="my-5">User Yasmin</h2>
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Asset Name</th>
-            <th>Asset type</th>
-            <th>Update the asset</th>
-            <th>Delete The asset</th>
-
-
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user: ${allusers}">
-            <td th:text="${user.username}"></td>
-            <td th:text="${user.role}"></td>
-            <td><a th:href="@{/update/{id}(id=${user.id})}" class="btn btn-primary"><i class="fas fa-user-edit"></i></a></td>
-            <td><a th:href="@{/delete/{id}(id=${user.id})}" class="btn btn-danger"><i class="fa fa-user-times"></i></a></td>
-
-        </tr>
-        </tbody>
-    </table>
-    <p><a href="/files" class="btn btn-warning">Upload Asset</a> </p>
-    <p><a href="/signup" class="btn btn-warning">Add User</a> </p>
-    <p><a href="/createfiles" class="btn btn-warning">Create Asset</a> </p>
-    <p><a href="/" class="btn btn-warning">Logout</a> </p>
-
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
-
 </body>
 </html>

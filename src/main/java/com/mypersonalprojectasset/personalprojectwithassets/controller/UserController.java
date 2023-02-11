@@ -61,7 +61,19 @@ public class UserController {
      //           return "userassetcreatepage";
 
     //}
+  //  @GetMapping("/delete/{id}")
+   // public String deleteUser(@PathVariable int id, HttpSession session) {
+     //   User userInSession = (User) session.getAttribute("user");
+        //if (userInSession.getRole().equals(Role.ADMIN)) {
+         //   User user = service.findByIdNewService(id);
+         //   service.delete(user);
 
+          //  return "adminpage";
+       // } else if (userInSession.getRole().equals(Role.USER)) {
+        //    return "unauthorized";
+     //   } else {
+     //       return "redirect:/login";
+     //   }}
 
 
 }

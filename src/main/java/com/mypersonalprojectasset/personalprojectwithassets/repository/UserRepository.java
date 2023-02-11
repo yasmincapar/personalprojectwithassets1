@@ -13,5 +13,8 @@ public interface UserRepository extends JpaRepository<User,Integer> {
     //controller has username and password
     //select all users where the username that user imputted will equal to password that user inputted
     User findByUsernameAndPassword(String username, String password);
-    //creating a user type
+
+
+
+
 }
