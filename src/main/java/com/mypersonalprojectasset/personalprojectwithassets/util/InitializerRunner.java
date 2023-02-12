@@ -20,12 +20,13 @@ public class InitializerRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
        // repository.deleteAll();
-        repository.save(User.builder().username("laura").password("123456").role(Role.USER).build());
-        repository.save(User.builder().username("mel").password("12345").role(Role.USER).build());
-        repository.save(User.builder().username("issy").password("123").role(Role.USER).build());
-        repository.save(User.builder().username("yasmin").password("1234").role(Role.ADMIN).build());
-        repository.save(User.builder().username("isla").password("123456").role(Role.VIEWER).build());
-        repository.findAll().forEach(user -> logger.info("{}", user));
-
+        if(repository.count() == 0) {
+            repository.save(User.builder().username("laura").password("123456").role(Role.USER).build());
+            repository.save(User.builder().username("mel").password("12345").role(Role.USER).build());
+            repository.save(User.builder().username("issy").password("123").role(Role.USER).build());
+            repository.save(User.builder().username("yasmin").password("1234").role(Role.ADMIN).build());
+            repository.save(User.builder().username("isla").password("123456").role(Role.VIEWER).build());
+            repository.findAll().forEach(user -> logger.info("{}", user));
+        }
     }
 }

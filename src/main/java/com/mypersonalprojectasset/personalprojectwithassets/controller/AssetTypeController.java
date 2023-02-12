@@ -28,25 +28,26 @@ public class AssetTypeController {
 
     @GetMapping("/assettypepage")
     public String showSignupPage(AssetType assetType, HttpSession session) {
-            return "addassettype";
+        return "addassettype";
     }
 
 
     @PostMapping("/addassettype")
-    public String addtheassettype(@Valid AssetTypeRequest assetType, BindingResult result, Model theModel){
-        if(result.hasErrors()){
+    public String addtheassettype(@Valid AssetTypeRequest assetType, BindingResult result, Model theModel) {
+        if (result.hasErrors()) {
             return "addassettype";
-
         }
         service.save(AssetType.builder().assetType(assetType.getAssetType()).build());
-            return "redirect:/assettypecreated";
+        theModel.addAttribute("allassets", service.findAll());
+        return "assettypecreated";
 
     }
+
     @GetMapping("viewassettype")
-    public String ViewAsset(Model theModel, HttpSession session){
-            AssetType assetTypes = (AssetType) session.getAttribute("assettype");
-            theModel.addAttribute("allassets", service.findAll());
-            return "assettypecreated";
-        }
-
+    public String ViewAsset(Model theModel, HttpSession session) {
+        AssetType assetTypes = (AssetType) session.getAttribute("assettype");
+        theModel.addAttribute("allassets", service.findAll());
+        return "assettypecreated";
     }
+
+}

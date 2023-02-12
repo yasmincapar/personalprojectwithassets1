@@ -46,4 +46,8 @@ public class AssetService {
 
         repository.save(asset);
     }
+
+    public List<Asset> getAllAssets() {
+        return repository.findAll();
+    }
 }

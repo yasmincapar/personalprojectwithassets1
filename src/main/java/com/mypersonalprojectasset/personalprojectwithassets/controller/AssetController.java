@@ -34,11 +34,10 @@ public class AssetController {
     }
 
     @PostMapping("/addasset")
-    public String addnewasset(AssetRequest assetRequest, RedirectAttributes redirectAttributes) {
+    public String addnewasset(AssetRequest assetRequest, Model model) {
         service.addnewasset(assetRequest);
-        redirectAttributes.addFlashAttribute("message", "Success");
-        redirectAttributes.addFlashAttribute("alertClass", "alert-success");
-        return "addassetpage";
+        model.addAttribute("allassets", service.getAllAssets());
+        return "assetlistpage";
     }
 
 

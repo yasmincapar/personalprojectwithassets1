@@ -20,4 +20,9 @@ public class AssetType {
 //project
     @NotBlank(message = "Asset Type is mandatory")
     private String assetType;
+
+    @Override
+    public String toString() {
+        return assetType.toUpperCase();
+    }
 }

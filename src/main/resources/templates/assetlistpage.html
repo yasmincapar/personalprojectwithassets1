@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Users</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+        integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+
+  <h1 class="my-5">Asset List Page</h1>
+  <h2 class="my-5">All Assets</h2>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Link</th>
+      <th>Created Date</th>
+      <th>Asset Type</th>
+      <th>Delete Asset</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="asset: ${allassets}">
+      <td th:text="${asset.name}"></td>
+      <td th:text="${asset.link}"></td>
+      <td th:text="${asset.creation_date}"></td>
+      <td th:text="${asset.assetType.toString()}"></td>
+      <td><a th:href="@{/delete/{id}(id=${asset.id})}" class="btn btn-danger"><i class="fa fa-user-times"></i></a></td>
+
+    </tr>
+    </tbody>
+  </table>
+  <p><a href="/assettypepage" class="btn btn-warning">Create Asset Type</a> </p>
+  <p><a href="/assetpage" class="btn btn-warning">Create an Asset</a> </p>
+  <p><a href="/adminpage" class="btn btn-warning">Back</a> </p>
+  <p><a href="/" class="btn btn-warning">Logout</a> </p>
+
+</div>
+
+</body>
+</html>

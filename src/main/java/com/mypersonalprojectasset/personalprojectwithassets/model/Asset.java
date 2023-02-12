@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="asset_table")
+@Table(name = "asset_table")
 public class Asset {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class Asset {
     private String name;
     private String creation_date;
     private String link;
-//shouldnt be hard coded attributes  list of attributes
+    //shouldnt be hard coded attributes  list of attributes
     //specifc attributes for assettype
     //custom asset types
     @OneToOne//one asset has one type
